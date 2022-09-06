@@ -4,26 +4,37 @@ import CountriesItem from '@/components/countries/CountriesItem'
 import Layout from '@/components/Layout'
 import Title from '@/components/more/Title'
 import { getCountries } from '@/lib/restcountries'
+import groupBy from 'lodash.groupby'
 import Head from 'next/head'
+import React from 'react'
 
 export default function Continents({ data }) {
+
+    const continentsData = Object.keys(data);
+
+    console.log(data);
+
     return (
         <Layout>
             <Head>
-                <title>Magma - Ülkeler</title>
+                <title>Magma - Kıtalar</title>
                 <meta name="description" content="Ülkeler ve detayları" />
                 <link rel="icon" href="/favicon.svg" />
             </Head>
 
             <CountriesBox>
+                {continentsData.map(group =>
+                    <React.Fragment key={group}>
+                        <Title title={group} length={data[group].length} />
 
-                <Title title={'Tüm Ülkeler'} length={data.length} />
+                        <CountriesFlow>
+                            {data[group].map((item, index) =>
+                                <CountriesItem data={item} key={index} />
+                            )}
+                        </CountriesFlow>
+                    </React.Fragment>
+                )}
 
-                <CountriesFlow>
-                    {data.map((item, index) =>
-                        <CountriesItem data={item} key={index} />
-                    )}
-                </CountriesFlow>
 
             </CountriesBox>
 
@@ -37,7 +48,7 @@ export async function getStaticProps() {
 
     return {
         props: {
-            data
+            data: groupBy(data, item => item.continents)
         },
         // revalidate: 60
     };
