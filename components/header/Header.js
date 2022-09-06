@@ -45,11 +45,11 @@ const Header = () => {
                 <Link href={data.Src}>
                     <a className={active === data.Src ? styles.active : ''}>
                         <span>
-                            <div className={styles.icon}>
-                                {active === data.Src ? data.IconFill : data.Icon}
+                            <div className={`${styles.icon} ${data.Type === 'logo' && styles.logo}`}>
+                                {active === data.Src && data.Type !== 'logo' ? data.IconFill : data.Icon}
                             </div>
 
-                            {data.Name && <p>{data.Name}</p>}
+                            {data.Type !== 'logo' && <p>{data.Name}</p>}
                         </span>
                     </a>
                 </Link>
@@ -61,7 +61,7 @@ const Header = () => {
         <div className={styles.header}>
 
             <div className={styles.logo}>
-                <Button data={{ icon: <LogoIcon />, IconFill: <LogoIcon />, Src: '/' }} />
+                <Button data={{ Type: 'logo', Icon: <LogoIcon />, Src: '/' }} />
             </div>
 
             <div className={styles.menu}>

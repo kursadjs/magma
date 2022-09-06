@@ -87,10 +87,20 @@
       border-radius: 999px;
       transition: var(--ani-1);
 
-      svg {
-        width: var(--w-16);
-        height: var(--w-16);
-        padding: var(--w-4);
+      .icon {
+        width: auto;
+        height: auto;
+        display: flex;
+
+        &.logo {
+          color: rgb(var(--tx-1));
+        }
+
+        svg {
+          width: var(--w-16);
+          height: var(--w-16);
+          padding: var(--w-4);
+        }
       }
 
       p {
