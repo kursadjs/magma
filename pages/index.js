@@ -1,9 +1,12 @@
+import CountriesBox from '@/components/countries/CountriesBox';
+import CountriesFlow from '@/components/countries/CountriesFlow';
+import CountriesItem from '@/components/countries/CountriesItem';
 import Layout from '@/components/Layout';
+import Title from '@/components/more/Title';
+import { getCountries } from '@/lib/restcountries';
 import Head from 'next/head'
-import Image from 'next/image';
-import styles from '../styles/Home.module.scss'
 
-export default function Home() {
+export default function Home({ data }) {
 
   return (
     <Layout>
@@ -13,6 +16,30 @@ export default function Home() {
         <link rel="icon" href="/favicon.svg" />
       </Head>
 
+      <CountriesBox>
+
+        <Title title={'Tüm Ülkeler'} length={data.length} />
+
+        <CountriesFlow>
+          {data.map((item, index) =>
+            <CountriesItem data={item} key={index} />
+          )}
+        </CountriesFlow>
+
+      </CountriesBox>
+
     </Layout>
   )
+}
+
+export async function getStaticProps() {
+
+  const data = await getCountries()
+
+  return {
+    props: {
+      data
+    },
+    // revalidate: 60
+  };
 }

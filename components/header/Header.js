@@ -19,7 +19,7 @@ const Header = () => {
         {
             ID: 2,
             Name: 'Kıtalar',
-            Src: '/a',
+            Src: '/continents',
             Icon: <ContinentsIcon />,
             IconFill: <ContinentsFillIcon />,
         },
