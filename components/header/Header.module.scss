@@ -1,0 +1,129 @@
+.header {
+  position: sticky;
+  top: 0;
+  width: calc(var(--w-4) * 19);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  border-right: var(--w-px) solid rgb(var(--bg-2));
+  gap: var(--w-8);
+  padding: var(--w-8);
+
+  .logo {
+    width: 100%;
+    height: auto;
+    display: flex;
+  }
+
+  .menu {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    .itemRandom {
+      width: 100%;
+      font-size: var(--fs-base);
+      font-weight: 600;
+      color: rgb(var(--white));
+      background-color: rgb(var(--cd));
+      border-radius: 999px;
+      padding: var(--w-5);
+      margin-top: var(--w-6);
+      transition: var(--ani-1);
+
+      &:hover {
+        background-color: rgb(var(--ch));
+      }
+      &:active {
+        background-color: rgb(var(--ca));
+      }
+    }
+  }
+
+  .more {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--w-2);
+
+    p {
+      line-height: 1.5em;
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      color: rgb(var(--tx-3));
+
+      a {
+        color: rgb(var(--tx-2));
+        transition: var(--ani-1);
+
+        &:hover {
+          color: rgb(var(--tx-1));
+        }
+      }
+    }
+  }
+}
+
+.buttonComponent {
+  width: 100%;
+  height: auto;
+  display: flex;
+
+  a {
+    width: 100%;
+    height: auto;
+    display: flex;
+
+    span {
+      width: auto;
+      height: auto;
+      display: flex;
+      align-items: center;
+      color: rgb(var(--tx-3));
+      border-radius: 999px;
+      transition: var(--ani-1);
+
+      svg {
+        width: var(--w-16);
+        height: var(--w-16);
+        padding: var(--w-4);
+      }
+
+      p {
+        line-height: 1.5em;
+        font-size: var(--fs-base);
+        font-weight: 500;
+        padding-right: var(--w-6);
+      }
+    }
+
+    &.active {
+      span {
+        color: rgb(var(--tx-1));
+        svg {
+          color: inherit;
+        }
+
+        p {
+          font-weight: 600;
+        }
+      }
+    }
+
+    &:hover {
+      span {
+        color: rgb(var(--tx-1));
+        background-color: rgb(var(--bg-2));
+
+        svg,
+        p {
+          color: inherit;
+        }
+      }
+    }
+  }
+}
