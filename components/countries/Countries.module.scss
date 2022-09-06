@@ -3,7 +3,7 @@
   height: auto;
   display: flex;
   flex-direction: column;
-  gap: var(--w-6);
+  gap: var(--w-4);
 }
 
 .countriesFlow {
@@ -19,16 +19,21 @@
   height: auto;
   display: flex;
   flex-direction: column;
-  background-color: rgb(var(--bg-2));
-  border-radius: var(--w-2);
-  gap: var(--w-4);
-  padding: var(--w-4);
 
   a {
     width: 100%;
     height: auto;
     display: flex;
     flex-direction: column;
+    gap: var(--w-4);
+    padding: var(--w-4);
+    background-color: rgb(var(--bg-2));
+    border-radius: var(--w-2);
+    transition: var(--ani-1);
+
+    &:hover {
+      background-color: rgb(var(--bg-3));
+    }
 
     .flag {
       width: 100%;

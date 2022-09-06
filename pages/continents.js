@@ -22,21 +22,19 @@ export default function Continents({ data }) {
                 <link rel="icon" href="/favicon.svg" />
             </Head>
 
-            <CountriesBox>
-                {continentsData.map(group =>
-                    <React.Fragment key={group}>
-                        <Title title={group} length={data[group].length} />
+            {continentsData.map(group =>
+                <CountriesBox key={group}>
+                    <Title title={group} length={data[group].length} />
 
-                        <CountriesFlow>
-                            {data[group].map((item, index) =>
-                                <CountriesItem data={item} key={index} />
-                            )}
-                        </CountriesFlow>
-                    </React.Fragment>
-                )}
+                    <CountriesFlow>
+                        {data[group].map((item, index) =>
+                            <CountriesItem data={item} key={index} />
+                        )}
+                    </CountriesFlow>
+                </CountriesBox>
+            )}
 
 
-            </CountriesBox>
 
         </Layout>
     )
@@ -48,7 +46,7 @@ export async function getStaticProps() {
 
     return {
         props: {
-            data: groupBy(data, item => item.continents)
+            data: groupBy(data, item => item.region)
         },
         // revalidate: 60
     };
