@@ -3,6 +3,7 @@
   height: auto;
   display: flex;
   flex-direction: column;
+  flex: 1;
   gap: var(--w-4);
   scroll-margin-top: var(--w-24);
 }

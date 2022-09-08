@@ -1,4 +1,4 @@
-import { ContinentsFillIcon, ContinentsIcon, CountriesIcon, CountriesFillIcon, LogoIcon, LamguageIcon, LamguageFillIcon, CurrenciesIcon, CurrenciesFillIcon } from '@/helper/Icon'
+import { ContinentsFillIcon, ContinentsIcon, CountriesIcon, CountriesFillIcon, LogoIcon, LamguageIcon, LamguageFillIcon, CurrenciesIcon, CurrenciesFillIcon, SearchIcon, SearchFillIcon, BookmarksIcon, BookmarksFillIcon } from '@/helper/Icon'
 import { getCountries } from '@/lib/restcountries'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -25,7 +25,21 @@ const Header = () => {
             Src: '/continents',
             Icon: <ContinentsIcon />,
             IconFill: <ContinentsFillIcon />,
-        }
+        },
+        {
+            ID: 3,
+            Name: 'Search',
+            Src: '/search',
+            Icon: <SearchIcon />,
+            IconFill: <SearchFillIcon />,
+        },
+        {
+            ID: 4,
+            Name: 'Saved',
+            Src: '/saved',
+            Icon: <BookmarksIcon />,
+            IconFill: <BookmarksFillIcon />,
+        },
     ]
 
     const [data, setData] = useState([])

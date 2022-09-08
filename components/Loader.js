@@ -1,5 +1,3 @@
-import { LogoIcon } from "@/helper/Icon"
-
 const Loader = () => {
     return (
         <div className="loaderPage">
@@ -13,7 +11,6 @@ const Loader = () => {
                 <span></span>
                 <span></span>
             </div>
-            <LogoIcon />
         </div>
     )
 }
