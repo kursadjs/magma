@@ -13,28 +13,28 @@ const Header = () => {
     const menuList = [
         {
             ID: 1,
-            Name: 'Tüm Ülkeler',
+            Name: 'All Countries',
             Src: '/',
             Icon: <CountriesIcon />,
             IconFill: <CountriesFillIcon />,
         },
         {
             ID: 2,
-            Name: 'Kıtalar',
+            Name: 'Continents',
             Src: '/continents',
             Icon: <ContinentsIcon />,
             IconFill: <ContinentsFillIcon />,
         },
         {
             ID: 3,
-            Name: 'Diller',
+            Name: 'Languages',
             Src: '/languages',
             Icon: <LamguageIcon />,
             IconFill: <LamguageFillIcon />,
         },
         {
             ID: 4,
-            Name: 'Para Birimleri',
+            Name: 'Currencies',
             Src: '/currencies',
             Icon: <CurrenciesIcon />,
             IconFill: <CurrenciesFillIcon />,
@@ -90,7 +90,7 @@ const Header = () => {
                 )}
 
                 <button className={styles.itemRandom} onClick={() => router.push(getRandomCountry())}>
-                    {'Rastgele Getir'}
+                    {'Random Country'}
                 </button>
 
             </div>

@@ -15,7 +15,7 @@ export default function Continents({ data }) {
     return (
         <Layout>
             <Head>
-                <title>Magma • Kıtalar</title>
+                <title>Magma • Continents</title>
                 <meta name="description" content="Ülkeler ve detayları" />
                 <link rel="icon" href="/favicon.svg" />
             </Head>

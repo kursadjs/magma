@@ -10,14 +10,14 @@ export default function Home({ data }) {
   return (
     <Layout>
       <Head>
-        <title>Magma • Ülkeler</title>
+        <title>Magma • All Countries</title>
         <meta name="description" content="Ülkeler ve detayları" />
         <link rel="icon" href="/favicon.svg" />
       </Head>
 
       <CountriesBox>
 
-        <Title title={'Tüm Ülkeler'} length={data.length} />
+        <Title title={'All Countries'} length={data.length} />
 
         <CountriesFlow>
           {data.map((item, index) =>
