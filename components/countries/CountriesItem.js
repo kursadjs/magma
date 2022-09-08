@@ -20,7 +20,7 @@ const CountriesItem = ({ data }) => {
 
                     <div className={styles.info}>
                         <h4>{data.name.common}</h4>
-                        <p>{data.capital}</p>
+                        {data.capital.length > 0 && <p>{data.capital.map((item, i) => <span key={i}>{item}</span>)}</p>}
                     </div>
 
                 </a>

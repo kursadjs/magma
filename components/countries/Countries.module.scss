@@ -25,6 +25,7 @@
     height: auto;
     display: flex;
     flex-direction: column;
+    flex: 1;
     gap: var(--w-4);
     padding: var(--w-4);
     background-color: rgb(var(--bg-2));
@@ -67,6 +68,15 @@
         font-size: var(--fs-sm);
         color: rgb(var(--tx-3));
         font-weight: 500;
+
+        span {
+          &::after {
+            content: ", ";
+          }
+          &:last-child::after {
+            display: none;
+          }
+        }
       }
     }
   }
