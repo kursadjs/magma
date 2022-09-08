@@ -24,21 +24,7 @@ const Header = () => {
             Src: '/continents',
             Icon: <ContinentsIcon />,
             IconFill: <ContinentsFillIcon />,
-        },
-        {
-            ID: 3,
-            Name: 'Languages',
-            Src: '/languages',
-            Icon: <LamguageIcon />,
-            IconFill: <LamguageFillIcon />,
-        },
-        {
-            ID: 4,
-            Name: 'Currencies',
-            Src: '/currencies',
-            Icon: <CurrenciesIcon />,
-            IconFill: <CurrenciesFillIcon />,
-        },
+        }
     ]
 
     const [data, setData] = useState([])

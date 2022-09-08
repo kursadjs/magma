@@ -1,11 +1,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import slugify from 'slugify'
 import styles from './Countries.module.scss'
 
 const CountriesItem = ({ data }) => {
     return (
         <div className={styles.item}>
-            <Link href={data.cca2}>
+            <Link href={`${slugify(data.name.common, '-').toLowerCase()}-${data.cca2.toLowerCase()}`}>
                 <a>
 
                     <div className={styles.flag}>

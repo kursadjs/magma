@@ -3,99 +3,91 @@
   height: auto;
   display: flex;
   flex-direction: column;
-  gap: var(--w-16);
+  gap: var(--w-12);
 
   .header {
     width: 100%;
     height: auto;
     display: flex;
-    flex-direction: column;
-    gap: var(--w-12);
+    gap: var(--w-8);
 
-    .top {
-      width: 100%;
+    .flag {
+      width: calc(var(--w-4) * 20);
+      height: auto;
+      display: block;
+      position: relative;
+    }
+
+    .info {
+      width: auto;
       height: auto;
       display: flex;
-      gap: var(--w-8);
+      flex-direction: column;
+      align-items: flex-start;
+      flex: 1;
+      gap: var(--w-2);
 
-      .flag {
-        width: calc(var(--w-4) * 20);
-        height: auto;
-        display: block;
-        position: relative;
-      }
-
-      .info {
+      .item {
         width: auto;
         height: auto;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        flex: 1;
-        gap: var(--w-2);
 
-        .item {
-          width: auto;
-          height: auto;
-          display: flex;
-          flex-direction: column;
-
-          span {
-            line-height: 1.5em;
-            font-size: var(--fs-xs);
-            font-weight: 600;
-            text-transform: uppercase;
-            color: rgb(var(--tx-3));
-          }
-
-          h1 {
-            line-height: 1.3em;
-            font-size: var(--fs-2xl);
-            font-weight: 500;
-            color: rgb(var(--txt-1));
-          }
-
-          h2 {
-            line-height: 1.5em;
-            font-size: var(--fs-base);
-            font-weight: 500;
-            color: rgb(var(--txt-2));
-          }
+        span {
+          line-height: 1.5em;
+          font-size: var(--fs-xs);
+          font-weight: 600;
+          text-transform: uppercase;
+          color: rgb(var(--tx-3));
         }
 
-        a {
-          width: auto;
-          height: auto;
-          display: flex;
-          align-items: center;
+        h1 {
+          line-height: 1.3em;
+          font-size: var(--fs-2xl);
+          font-weight: 500;
+          color: rgb(var(--txt-1));
+        }
 
+        h2 {
+          line-height: 1.5em;
+          font-size: var(--fs-base);
+          font-weight: 500;
           color: rgb(var(--txt-2));
-          background-color: rgb(var(--bg-2));
-          border: var(--w-px) solid rgb(var(--bg-3));
+        }
+      }
 
-          border-radius: var(--w-2);
-          margin-top: auto;
-          transition: var(--ani-1);
+      a {
+        width: auto;
+        height: auto;
+        display: flex;
+        align-items: center;
 
-          svg {
-            width: var(--w-14);
-            height: var(--w-14);
-            display: flex;
-            padding: var(--w-3_5);
-          }
+        color: rgb(var(--txt-2));
+        background-color: rgb(var(--bg-2));
+        border: var(--w-px) solid rgb(var(--bg-3));
 
-          span {
-            line-height: 1.5em;
-            font-size: var(--fs-sm);
-            font-weight: 500;
-            color: inherit;
-            margin-right: var(--w-6);
-          }
+        border-radius: var(--w-2);
+        margin-top: auto;
+        transition: var(--ani-1);
 
-          &:hover {
-            color: rgb(var(--txt-1));
-            background-color: rgb(var(--bg-3));
-          }
+        svg {
+          width: var(--w-14);
+          height: var(--w-14);
+          display: flex;
+          padding: var(--w-3_5);
+        }
+
+        span {
+          line-height: 1.5em;
+          font-size: var(--fs-sm);
+          font-weight: 500;
+          color: inherit;
+          margin-right: var(--w-6);
+        }
+
+        &:hover {
+          color: rgb(var(--txt-1));
+          background-color: rgb(var(--bg-3));
         }
       }
     }
@@ -120,7 +112,6 @@
         height: auto;
         display: grid;
         grid-template-columns: var(--w-48) 1fr;
-        align-items: center;
         border-bottom: inherit;
 
         &:last-child {
@@ -136,7 +127,7 @@
           border-right: var(--w-px) solid rgb(var(--bg-2));
 
           h6 {
-            line-height: 1.5em;
+            line-height: var(--w-6);
             font-size: var(--fs-xs);
             font-weight: 600;
             text-transform: uppercase;
@@ -153,7 +144,7 @@
           padding: var(--w-4);
 
           p {
-            line-height: 1.5em;
+            line-height: var(--w-6);
             font-size: var(--fs-sm);
             font-weight: 500;
             color: rgb(var(--tx-1));
