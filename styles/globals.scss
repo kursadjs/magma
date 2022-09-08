@@ -63,12 +63,12 @@ body {
     flex: 1;
 
     .main {
-      width: 100%;
+      width: calc(100% - (var(--w-4) * 19));
       height: auto;
       display: flex;
       flex-direction: column;
       padding: var(--w-8);
-      gap: var(--w-12);
+      gap: var(--w-8);
     }
   }
 }

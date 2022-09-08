@@ -1,8 +1,8 @@
 import styles from './Countries.module.scss'
 
-const CountriesBox = ({ children }) => {
+const CountriesBox = ({ children, ...props }) => {
     return (
-        <div className={styles.countriesBox}>
+        <div className={styles.countriesBox} {...props}>
             {children}
         </div>
     )
