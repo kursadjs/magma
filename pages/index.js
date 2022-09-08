@@ -7,11 +7,10 @@ import { getCountries } from '@/lib/restcountries';
 import Head from 'next/head'
 
 export default function Home({ data }) {
-
   return (
     <Layout>
       <Head>
-        <title>Magma - Ülkeler</title>
+        <title>Magma • Ülkeler</title>
         <meta name="description" content="Ülkeler ve detayları" />
         <link rel="icon" href="/favicon.svg" />
       </Head>
@@ -34,7 +33,7 @@ export default function Home({ data }) {
 
 export async function getStaticProps() {
 
-  const data = await getCountries()
+  const data = await getCountries('all')
 
   return {
     props: {

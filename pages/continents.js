@@ -12,12 +12,10 @@ export default function Continents({ data }) {
 
     const continentsData = Object.keys(data);
 
-    console.log(data);
-
     return (
         <Layout>
             <Head>
-                <title>Magma - Kıtalar</title>
+                <title>Magma • Kıtalar</title>
                 <meta name="description" content="Ülkeler ve detayları" />
                 <link rel="icon" href="/favicon.svg" />
             </Head>
@@ -42,11 +40,11 @@ export default function Continents({ data }) {
 
 export async function getStaticProps() {
 
-    const data = await getCountries()
+    const data = await getCountries('all')
 
     return {
         props: {
-            data: groupBy(data, item => item.region)
+            data: groupBy(data, item => item.continents)
         },
         // revalidate: 60
     };

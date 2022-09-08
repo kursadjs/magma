@@ -1281,6 +1281,11 @@ normalize-path@^3.0.0, normalize-path@~3.0.0:
   resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-3.0.0.tgz#0dcd69ff23a1c9b11fd0978316644a0388216a65"
   integrity sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==
 
+number-formatter@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/number-formatter/-/number-formatter-1.2.0.tgz#1cf99f371fee627be9f5f12fdac79ecb31b88a0f"
+  integrity sha512-o4wuRhqtPhx/K6lsYdzvOZob0aIQXc6kpO1wufUQI1Em3ctBLU4qMeQ4OWhkMC63Emo1GN1yJ7sEcsdIqc+Mbg==
+
 object-assign@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"

@@ -26,14 +26,14 @@ const Header = () => {
         {
             ID: 3,
             Name: 'Diller',
-            Src: '/b',
+            Src: '/languages',
             Icon: <LamguageIcon />,
             IconFill: <LamguageFillIcon />,
         },
         {
             ID: 4,
             Name: 'Para Birimleri',
-            Src: '/c',
+            Src: '/currencies',
             Icon: <CurrenciesIcon />,
             IconFill: <CurrenciesFillIcon />,
         },

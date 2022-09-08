@@ -10,7 +10,7 @@ const CountriesItem = ({ data }) => {
 
                     <div className={styles.flag}>
                         <Image
-                            src={data.flags.png}
+                            src={data.flags.svg}
                             alt={data.name.common}
                             width={300}
                             height={200}
