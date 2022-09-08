@@ -1,6 +1,8 @@
 import { ContinentsFillIcon, ContinentsIcon, CountriesIcon, CountriesFillIcon, LogoIcon, LamguageIcon, LamguageFillIcon, CurrenciesIcon, CurrenciesFillIcon } from '@/helper/Icon'
+import { getCountries } from '@/lib/restcountries'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import styles from './Header.module.scss'
 
 const Header = () => {
@@ -39,6 +41,23 @@ const Header = () => {
         },
     ]
 
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        async function as() {
+            const data = await getCountries('all')
+            const filter = await data.map(i => i.cca2)
+            setData([...filter])
+        } as()
+    }, [])
+
+    const getRandomCountry = () => {
+        const random = Math.floor(Math.random() * 250)
+
+        return data[random]
+    }
+
+
     const Button = ({ data }) => {
         return (
             <div className={styles.buttonComponent}>
@@ -70,7 +89,7 @@ const Header = () => {
                     <Button data={item} key={item.ID} />
                 )}
 
-                <button className={styles.itemRandom}>
+                <button className={styles.itemRandom} onClick={() => router.push(getRandomCountry())}>
                     {'Rastgele Getir'}
                 </button>
 
