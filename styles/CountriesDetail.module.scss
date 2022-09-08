@@ -31,19 +31,36 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        flex: 1;
         gap: var(--w-2);
 
-        h1 {
-          line-height: 1.5em;
-          font-size: var(--fs-4xl);
-          font-weight: 500;
-          color: rgb(var(--txt-1));
-        }
-        h2 {
-          line-height: 1.5em;
-          font-size: var(--fs-2xl);
-          font-weight: 500;
-          color: rgb(var(--txt-2));
+        .item {
+          width: auto;
+          height: auto;
+          display: flex;
+          flex-direction: column;
+
+          span {
+            line-height: 1.5em;
+            font-size: var(--fs-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+            color: rgb(var(--tx-3));
+          }
+
+          h1 {
+            line-height: 1.3em;
+            font-size: var(--fs-2xl);
+            font-weight: 500;
+            color: rgb(var(--txt-1));
+          }
+
+          h2 {
+            line-height: 1.5em;
+            font-size: var(--fs-base);
+            font-weight: 500;
+            color: rgb(var(--txt-2));
+          }
         }
 
         a {

@@ -13,6 +13,8 @@ import numberFormatter from 'number-formatter'
 
 export default function CountriesDetail({ data, borders }) {
 
+    console.log(data);
+
     const NotBorders = () => {
         return (
             <div className={styles.notBorders}>
@@ -47,14 +49,20 @@ export default function CountriesDetail({ data, borders }) {
                         </div>
 
                         <div className={styles.info}>
-                            <h1>{data.name && data.name.common}</h1>
-                            <h2>{data.name && data.name.official}</h2>
+                            <div className={styles.item}>
+                                <span>Name</span>
+                                <h1>{data.name && data.name.common}</h1>
+                            </div>
+                            <div className={styles.item}>
+                                <span>Official Name</span>
+                                <h2>{data.name && data.name.official}</h2>
+                            </div>
 
                             {data.maps.googleMaps &&
                                 <Link href={data.maps.googleMaps}>
                                     <a target={"_blank"}>
                                         <GoogleMapsIcon />
-                                        <span>Haritada göster</span>
+                                        <span>Show on map</span>
                                     </a>
                                 </Link>
                             }
@@ -68,7 +76,7 @@ export default function CountriesDetail({ data, borders }) {
                             {data.capital.length > 0 &&
                                 <div className={styles.tableItem}>
                                     <div className={styles.key}>
-                                        <h6>Başkent</h6>
+                                        <h6>Capital</h6>
                                     </div>
                                     <div className={styles.value}>
                                         {data.capital.map((item, i) => <p key={i}>{item}</p>)}
@@ -79,7 +87,7 @@ export default function CountriesDetail({ data, borders }) {
                             {data.continents.length > 0 &&
                                 <div className={styles.tableItem}>
                                     <div className={styles.key}>
-                                        <h6>Kıta</h6>
+                                        <h6>Continents</h6>
                                     </div>
                                     <div className={styles.value}>
                                         {data.continents.map((item, i) => <p key={i}>{item}</p>)}
@@ -90,7 +98,7 @@ export default function CountriesDetail({ data, borders }) {
                             {data.subregion &&
                                 <div className={styles.tableItem}>
                                     <div className={styles.key}>
-                                        <h6>Bölge</h6>
+                                        <h6>Subregion</h6>
                                     </div>
                                     <div className={styles.value}>
                                         <p>{data.subregion}</p>
@@ -101,7 +109,7 @@ export default function CountriesDetail({ data, borders }) {
                             {Object.keys(data.currencies).length > 0 &&
                                 <div className={styles.tableItem}>
                                     <div className={styles.key}>
-                                        <h6>Para Birimi</h6>
+                                        <h6>Currencies</h6>
                                     </div>
                                     <div className={styles.value}>
                                         {Object.keys(data.currencies).map((item, i) => <p key={i}>{`${data.currencies[item].name} (${data.currencies[item].symbol})`}</p>)}
@@ -112,7 +120,7 @@ export default function CountriesDetail({ data, borders }) {
                             {Object.keys(data.languages).length > 0 &&
                                 <div className={styles.tableItem}>
                                     <div className={styles.key}>
-                                        <h6>Resmi Dilleri</h6>
+                                        <h6>Languages</h6>
                                     </div>
                                     <div className={styles.value}>
                                         {Object.keys(data.languages).map((item, i) => <p key={i}>{data.languages[item]}</p>)}
@@ -120,10 +128,10 @@ export default function CountriesDetail({ data, borders }) {
                                 </div>
                             }
 
-                            {data.population &&
+                            {data.population > 0 &&
                                 <div className={styles.tableItem}>
                                     <div className={styles.key}>
-                                        <h6>Nüfus</h6>
+                                        <h6>Population</h6>
                                     </div>
                                     <div className={styles.value}>
                                         <p>{numberFormatter("#,##0.####", data.population)}</p>
@@ -139,7 +147,7 @@ export default function CountriesDetail({ data, borders }) {
 
                 <CountriesBox>
 
-                    <Title title={'Komşu Ülkeler'} length={borders.length} />
+                    <Title title={'Border Countries'} length={borders.length} />
 
                     {!borders.status ?
                         <CountriesFlow>
