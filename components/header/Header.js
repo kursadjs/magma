@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import styles from './Header.module.scss'
+import slugify from 'slugify'
 
 const Header = () => {
 
@@ -32,7 +33,7 @@ const Header = () => {
     useEffect(() => {
         async function as() {
             const data = await getCountries('all')
-            const filter = await data.map(i => i.cca2)
+            const filter = await data.map(i => `${slugify(i.name.common, '-').toLowerCase()}-${i.cca2.toLowerCase()}`)
             setData([...filter])
         } as()
     }, [])
