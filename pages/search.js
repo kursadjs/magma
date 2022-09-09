@@ -8,6 +8,7 @@ import { getCountries } from '@/lib/restcountries'
 import styles from '@/styles/Search.module.scss'
 import { NotBordersIcon, SearchIcon } from '@/helper/Icon'
 import Loader from '@/components/Loader'
+import Title from '@/components/more/Title'
 
 export default function Search({ data }) {
 
@@ -75,33 +76,38 @@ export default function Search({ data }) {
                 </form>
             </div>
 
-            <CountriesBox>
+            {/* <CountriesBox>
+                <Title title={'Search History'} />
+            </CountriesBox> */}
 
-                {isTyping &&
-                    <>
-                        {searchData.resultList && !searchData.loader &&
-                            <CountriesFlow>
-                                {searchData.resultList.map((item, index) =>
-                                    <CountriesItem data={item} key={index} />
-                                )}
-                            </CountriesFlow>
-                        }
+            {/* <CountriesBox>
+                <Title title={'Recommended Countries'} />
+            </CountriesBox> */}
 
-                        {searchData.loader &&
-                            <Loader />
-                        }
+            {isTyping &&
+                <CountriesBox>
 
-                        {!searchData.resultList && !searchData.loader &&
-                            <div className={styles.notFound}>
-                                <NotBordersIcon />
-                                <p>{`No results found for '${searchData.inputValue}'`}</p>
-                            </div>
-                        }
-                    </>
-                }
+                    {searchData.resultList && !searchData.loader &&
+                        <CountriesFlow>
+                            {searchData.resultList.map((item, index) =>
+                                <CountriesItem data={item} key={index} />
+                            )}
+                        </CountriesFlow>
+                    }
 
+                    {searchData.loader &&
+                        <Loader />
+                    }
 
-            </CountriesBox>
+                    {!searchData.resultList && !searchData.loader &&
+                        <div className={styles.notFound}>
+                            <NotBordersIcon />
+                            <p>{`No results found for '${searchData.inputValue}'`}</p>
+                        </div>
+                    }
+
+                </CountriesBox>
+            }
 
         </Layout>
     )

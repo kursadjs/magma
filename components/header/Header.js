@@ -54,7 +54,6 @@ const Header = () => {
 
     const getRandomCountry = () => {
         const random = Math.floor(Math.random() * 250)
-
         return data[random]
     }
 

@@ -56,38 +56,46 @@
         }
       }
 
-      a {
+      .bottom {
         width: auto;
         height: auto;
         display: flex;
-        align-items: center;
-
-        color: rgb(var(--txt-2));
-        background-color: rgb(var(--bg-2));
-        border: var(--w-px) solid rgb(var(--bg-3));
-
-        border-radius: var(--w-2);
         margin-top: auto;
-        transition: var(--ani-1);
+        gap: var(--w-4);
 
-        svg {
-          width: var(--w-14);
-          height: var(--w-14);
+        a,
+        button {
+          width: auto;
+          height: auto;
           display: flex;
-          padding: var(--w-3_5);
-        }
+          align-items: center;
 
-        span {
-          line-height: 1.5em;
-          font-size: var(--fs-sm);
-          font-weight: 500;
-          color: inherit;
-          margin-right: var(--w-6);
-        }
+          color: rgb(var(--txt-2));
+          background-color: rgb(var(--bg-2));
+          border: var(--w-px) solid rgb(var(--bg-3));
 
-        &:hover {
-          color: rgb(var(--txt-1));
-          background-color: rgb(var(--bg-3));
+          border-radius: var(--w-2);
+          transition: var(--ani-1);
+
+          svg {
+            width: var(--w-14);
+            height: var(--w-14);
+            display: flex;
+            padding: var(--w-3_5);
+          }
+
+          p {
+            line-height: 1.5em;
+            font-size: var(--fs-sm);
+            font-weight: 500;
+            color: inherit;
+            margin-right: var(--w-5);
+          }
+
+          &:hover {
+            color: rgb(var(--txt-1));
+            background-color: rgb(var(--bg-3));
+          }
         }
       }
     }

@@ -9,10 +9,13 @@ import CountriesItem from "@/components/countries/CountriesItem";
 import Title from "@/components/more/Title";
 import Link from "next/link";
 import slugify from 'slugify';
-import { GoogleMapsIcon, NotBordersIcon } from "@/helper/Icon";
+import { GoogleMapsIcon, NotBordersIcon, SavedAddedIcon, SavedAddIcon } from "@/helper/Icon";
 import numberFormatter from 'number-formatter'
+import { useState } from "react";
 
 export default function CountriesDetail({ data, borders }) {
+
+    const [saved, setSaved] = useState(false)
 
     const NotBorders = () => {
         return (
@@ -56,14 +59,22 @@ export default function CountriesDetail({ data, borders }) {
                             <h2>{data.name && data.name.official}</h2>
                         </div>
 
-                        {data.maps.googleMaps &&
-                            <Link href={data.maps.googleMaps}>
-                                <a target={"_blank"}>
-                                    <GoogleMapsIcon />
-                                    <span>Show on map</span>
-                                </a>
-                            </Link>
-                        }
+                        <div className={styles.bottom}>
+                            {data.maps.googleMaps &&
+                                <Link href={data.maps.googleMaps}>
+                                    <a target={"_blank"}>
+                                        <GoogleMapsIcon />
+                                        <p>Show on map</p>
+                                    </a>
+                                </Link>
+                            }
+                            <button>
+                                {saved ? <SavedAddedIcon /> : <SavedAddIcon />}
+                                <p>{saved ? 'Remove' : 'Add'}</p>
+                            </button>
+
+                        </div>
+
                     </div>
 
                 </div>
