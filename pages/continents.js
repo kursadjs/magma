@@ -4,20 +4,19 @@ import CountriesFlow from '@/components/countries/CountriesFlow'
 import CountriesItem from '@/components/countries/CountriesItem'
 import Layout from '@/components/Layout'
 import Title from '@/components/more/Title'
-import { getCountries } from '@/lib/restcountries'
-import groupBy from 'lodash.groupby'
+import { useSelector } from 'react-redux'
 import slugify from 'slugify';
 import Head from 'next/head'
 import React from 'react'
 
-export default function Continents({ data }) {
+export default function Continents() {
 
-    const slugFormat = (data) => {
-        return slugify(data, '-').toLowerCase()
+    const { allContinents } = useSelector((state) => state.countries)
+    const continentsTitle = Object.keys(allContinents);
+
+    const slugFormat = (allContinents) => {
+        return slugify(allContinents, '-').toLowerCase()
     }
-
-
-    const continentsData = Object.keys(data);
 
     return (
         <Layout>
@@ -27,14 +26,14 @@ export default function Continents({ data }) {
                 <link rel="icon" href="/favicon.svg" />
             </Head>
 
-            <Categories data={data} />
+            <Categories data={allContinents} />
 
-            {continentsData.map(group =>
+            {continentsTitle.map(group =>
                 <CountriesBox key={group} id={slugFormat(group)}>
-                    <Title title={group} length={data[group].length} />
+                    <Title title={group} length={allContinents[group].length} />
 
                     <CountriesFlow>
-                        {data[group].map((item, index) =>
+                        {allContinents[group].map((item, index) =>
                             <CountriesItem data={item} key={index} />
                         )}
                     </CountriesFlow>
@@ -45,16 +44,4 @@ export default function Continents({ data }) {
 
         </Layout>
     )
-}
-
-export async function getStaticProps() {
-
-    const data = await getCountries('all')
-
-    return {
-        props: {
-            data: groupBy(data, item => item.continents)
-        },
-        // revalidate: 60
-    };
 }

@@ -3,10 +3,13 @@ import CountriesFlow from '@/components/countries/CountriesFlow';
 import CountriesItem from '@/components/countries/CountriesItem';
 import Layout from '@/components/Layout';
 import Title from '@/components/more/Title';
-import { getCountries } from '@/lib/restcountries';
+import { useSelector } from 'react-redux'
 import Head from 'next/head'
 
-export default function Home({ data }) {
+export default function Home() {
+
+  const { allCountries } = useSelector((state) => state.countries)
+
   return (
     <Layout>
       <Head>
@@ -17,10 +20,10 @@ export default function Home({ data }) {
 
       <CountriesBox>
 
-        <Title title={'All Countries'} length={data.length} />
+        <Title title={'All Countries'} length={allCountries.length} />
 
         <CountriesFlow>
-          {data.map((item, index) =>
+          {allCountries.map((item, index) =>
             <CountriesItem data={item} key={index} />
           )}
         </CountriesFlow>
@@ -29,16 +32,4 @@ export default function Home({ data }) {
 
     </Layout>
   )
-}
-
-export async function getStaticProps() {
-
-  const data = await getCountries('all')
-
-  return {
-    props: {
-      data
-    },
-    // revalidate: 60
-  };
 }

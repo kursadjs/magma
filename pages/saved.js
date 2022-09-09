@@ -4,41 +4,13 @@ import CountriesItem from '@/components/countries/CountriesItem';
 import Layout from '@/components/Layout';
 import Title from '@/components/more/Title';
 import NullBox from '@/components/null/NullBox';
-import { getCountries } from '@/lib/restcountries';
+import { useSelector } from 'react-redux'
 import Head from 'next/head'
-import { useEffect, useState } from 'react';
-import slugify from 'slugify';
 
-export default function Saved({ data }) {
+export default function Saved() {
 
-    const [savedList, setSavedList] = useState()
-    const [filterData, setFilterData] = useState([])
+    const { savedList } = useSelector((state) => state.countries)
 
-    useEffect(() => {
-        const saved = localStorage.getItem('saved')
-
-        if (!saved) {
-            const data = []
-            localStorage.setItem('saved', JSON.stringify(data))
-        } else {
-            setSavedList(JSON.parse(localStorage.getItem('saved')))
-        }
-    }, [])
-
-    useEffect(() => {
-        if (savedList) {
-            console.log('yenilendi');
-            for (let i = 0; i < savedList.length; i++) {
-
-                const checkList = filterData.find(item => `${slugify(item.name.common, '-').toLowerCase()}-${item.cca2.toLowerCase()}` === savedList[i])
-
-                if (!checkList) {
-                    const filterItem = data.filter(item => `${slugify(item.name.common, '-').toLowerCase()}-${item.cca2.toLowerCase()}` === savedList[i])
-                    setFilterData(data => [...data, filterItem[0]])
-                }
-            }
-        }
-    }, [data, filterData, savedList])
 
     return (
         <Layout>
@@ -48,16 +20,16 @@ export default function Saved({ data }) {
                 <link rel="icon" href="/favicon.svg" />
             </Head>
 
-            {filterData.length === 0 &&
+            {savedList.length === 0 &&
                 <NullBox data={{ title: 'Saved country not found!', desc: 'Tap the button to register your first country', src: { title: 'Save now', href: '/' } }} />
             }
 
-            {filterData.length > 0 &&
+            {savedList.length > 0 &&
                 <CountriesBox>
-                    <Title title={'Saved Countries'} length={filterData.length} />
+                    <Title title={'Saved Countries'} length={savedList.length} />
 
                     <CountriesFlow>
-                        {filterData.map((item, index) =>
+                        {savedList.map((item, index) =>
                             <CountriesItem data={item} key={index} />
                         )}
                     </CountriesFlow>
@@ -66,16 +38,4 @@ export default function Saved({ data }) {
 
         </Layout>
     )
-}
-
-export async function getStaticProps() {
-
-    const data = await getCountries('all')
-
-    return {
-        props: {
-            data
-        },
-        // revalidate: 60
-    };
 }

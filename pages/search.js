@@ -4,13 +4,15 @@ import Layout from '@/components/Layout'
 import CountriesBox from '@/components/countries/CountriesBox'
 import CountriesFlow from '@/components/countries/CountriesFlow'
 import CountriesItem from '@/components/countries/CountriesItem'
-import { getCountries } from '@/lib/restcountries'
 import styles from '@/styles/Search.module.scss'
 import { NotBordersIcon, SearchIcon } from '@/helper/Icon'
 import Loader from '@/components/Loader'
+import { useSelector } from 'react-redux'
 import Title from '@/components/more/Title'
 
-export default function Search({ data }) {
+export default function Search() {
+
+    const { allCountries } = useSelector((state) => state.countries)
 
     const [searchData, setSearchData] = useState({
         inputValue: '',
@@ -28,7 +30,7 @@ export default function Search({ data }) {
             }))
 
             const getData = setTimeout(() => {
-                const filter = data.filter(item => item.name.common.toLowerCase().includes(searchData.inputValue.toLowerCase()))
+                const filter = allCountries.filter(item => item.name.common.toLowerCase().includes(searchData.inputValue.toLowerCase()))
                 setSearchData(data => ({
                     ...data,
                     resultList: filter.length > 0 ? filter : false,
@@ -60,7 +62,9 @@ export default function Search({ data }) {
     return (
         <Layout>
             <Head>
-                <title>Magma • Search Countries</title>
+                <title>
+                    {isTyping ? `Search results for '${searchData.inputValue}' • Magma` : `Magma • Search Countries`}
+                </title>
                 <meta name="description" content="Ülkeler ve detayları" />
                 <link rel="icon" href="/favicon.svg" />
             </Head>
@@ -111,16 +115,4 @@ export default function Search({ data }) {
 
         </Layout>
     )
-}
-
-export async function getStaticProps() {
-
-    const data = await getCountries('all')
-
-    return {
-        props: {
-            data
-        },
-        // revalidate: 60
-    };
 }
