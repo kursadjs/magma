@@ -5,6 +5,7 @@
       "@/components/*": ["components/*"],
       "@/helper/*": ["helper/*"],
       "@/lib/*": ["lib/*"],
+      "@/redux/*": ["redux/*"],
       "@/styles/*": ["styles/*"]
     }
   }

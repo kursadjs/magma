@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.5",
     "lodash.groupby": "^4.6.0",
     "next": "12.2.5",
     "number-formatter": "^1.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-redux": "^8.0.2",
     "sass": "^1.54.8",
     "slugify": "^1.6.5"
   },
