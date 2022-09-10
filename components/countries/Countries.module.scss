@@ -134,6 +134,11 @@
     &.active {
       a {
         background-color: rgb(var(--cd));
+        transition: var(--ani-1);
+
+        &:focus {
+          box-shadow: 0 0 0 3px rgba(var(--cd), 0.6);
+        }
       }
     }
   }

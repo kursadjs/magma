@@ -49,6 +49,10 @@
       text-align: center;
       margin-top: var(--w-4);
 
+      &:focus {
+        transform: scale(1.05);
+      }
+
       &:hover {
         background-color: rgba(var(--white), 0.86);
       }

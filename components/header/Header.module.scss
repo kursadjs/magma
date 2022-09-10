@@ -34,6 +34,10 @@
       margin-top: var(--w-6);
       transition: var(--ani-1);
 
+      &:focus {
+        box-shadow: 0 0 0 3px rgba(var(--cd), 0.6);
+      }
+
       &:hover {
         background-color: rgb(var(--ch));
       }
@@ -77,6 +81,16 @@
     width: 100%;
     height: auto;
     display: flex;
+    border-radius: 999px;
+    transition: var(--ani-1);
+
+    &:focus {
+      box-shadow: none;
+      span {
+        box-shadow: 0 0 0 3px rgba(var(--bg-4));
+        z-index: 1;
+      }
+    }
 
     span {
       width: auto;

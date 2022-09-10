@@ -54,3 +54,12 @@ svg {
   align-items: center;
   justify-content: center;
 }
+
+a,
+button,
+input {
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(var(--bg-4));
+  }
+}
