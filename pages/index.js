@@ -1,10 +1,10 @@
-import CountriesBox from '@/components/countries/CountriesBox';
-import CountriesFlow from '@/components/countries/CountriesFlow';
-import CountriesItem from '@/components/countries/CountriesItem';
-import Layout from '@/components/Layout';
-import Title from '@/components/more/Title';
-import { useSelector } from 'react-redux'
 import Head from 'next/head'
+import { useSelector } from 'react-redux'
+import Layout from '@/components/Layout'
+import Title from '@/components/more/Title'
+import CountriesBox from '@/components/countries/CountriesBox'
+import CountriesFlow from '@/components/countries/CountriesFlow'
+import CountriesItem from '@/components/countries/CountriesItem'
 
 export default function Home() {
 

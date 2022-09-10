@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
+import { useSelector } from 'react-redux'
 import Layout from '@/components/Layout'
+import Loader from '@/components/Loader'
+import Title from '@/components/more/Title'
 import CountriesBox from '@/components/countries/CountriesBox'
 import CountriesFlow from '@/components/countries/CountriesFlow'
 import CountriesItem from '@/components/countries/CountriesItem'
 import styles from '@/styles/Search.module.scss'
 import { NotBordersIcon, SearchIcon } from '@/helper/Icon'
-import Loader from '@/components/Loader'
-import { useSelector } from 'react-redux'
-import Title from '@/components/more/Title'
 
 export default function Search() {
 

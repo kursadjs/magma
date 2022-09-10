@@ -1,62 +1,53 @@
 import { useEffect } from "react"
+import Head from "next/head"
 import { useSelector, useDispatch } from 'react-redux'
 import groupBy from "lodash.groupby"
 
 import { getCountries } from "@/lib/restcountries"
-import { getCountries as getCountriesRedux, getContinents as getContinentsRedux, getSaved } from "@/redux/features/countriesSlice"
+import { addContinents, addCountries, addSaved } from "stores/countries"
+import { closeLoader, openLoader } from "stores/settings"
 
-import Header from "./header/Header"
-import { changeLoader } from "@/redux/features/settingsSlice"
 import Loader from "./Loader"
-import Head from "next/head"
+import Header from "./header/Header"
 
 const Layout = ({ children }) => {
 
     const { loader } = useSelector((state) => state.settings)
-    const { allCountries, savedList } = useSelector((state) => state.countries)
     const dispatch = useDispatch()
 
-    const getAllData = async () => {
-        // Loader aç
-        dispatch(changeLoader(true))
+    // Ülkeler ve kıtaların redux'a eklenmesi
+    useEffect(() => {
+        const getAllData = async () => {
+            // Loader aç
+            dispatch(openLoader())
 
-        const allCountries = await getCountries('all')
+            // Ülkeleri çek
+            const allCountries = await getCountries('all')
+            // Ülkeleri kıtalarına göre sınıflandır
+            const allContinents = groupBy(allCountries, item => item.continents)
 
-        const allContinents = groupBy(allCountries, item => item.continents)
+            // Tüm Ülkeler redux ekle
+            dispatch(addCountries(allCountries))
+            // Tüm Kıtalar redux ekle
+            dispatch(addContinents(allContinents))
 
-        // Tüm Ülkeler
-        dispatch(getCountriesRedux(allCountries))
-        // Tüm Kıtalar
-        dispatch(getContinentsRedux(allContinents))
+            // Loader kapat
+            dispatch(closeLoader())
+        }
+        getAllData()
+    }, [])
 
-        // Loader kapat
-        dispatch(changeLoader(false))
-    }
-    useEffect(() => { getAllData() }, [])
-
-    const saveda = async () => {
-        // Save local storage check and redux write
+    // localstorage kaydedilenler kontrolü
+    useEffect(() => {
         const saved = localStorage.getItem('saved')
 
         if (!saved) {
             localStorage.setItem('saved', JSON.stringify([]))
         } else {
-            const savedlocal = await JSON.parse(localStorage.getItem('saved'))
-
-            if (allCountries.length > 0 && savedlocal.length > 0) {
-                for (let i = 0; i < savedlocal.length; i++) {
-
-                    const checkList = savedList.find(item => item.cca2.toLowerCase() === savedlocal[i])
-
-                    if (!checkList) {
-                        dispatch(getSaved(allCountries.filter(item => item.cca2.toLowerCase() === savedlocal[i])[0]))
-                    }
-                }
-            }
+            const savedlocal = JSON.parse(localStorage.getItem('saved'))
+            dispatch(addSaved(savedlocal))
         }
-    }
-
-    useEffect(() => { saveda() }, [allCountries])
+    }, [])
 
     return (
         <div className='container'>

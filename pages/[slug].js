@@ -1,57 +1,92 @@
+import { useEffect, useState } from "react"
+import Head from "next/head"
+import Image from "next/image"
+import Link from "next/link"
+import { useSelector, useDispatch } from 'react-redux'
+import { useRouter } from "next/router"
+import numberFormatter from 'number-formatter'
 import Layout from "@/components/Layout";
 import { getCountries } from "@/lib/restcountries";
-import Head from "next/head";
 import styles from "@/styles/CountriesDetail.module.scss";
-import Image from "next/image";
 import CountriesBox from "@/components/countries/CountriesBox";
 import CountriesFlow from "@/components/countries/CountriesFlow";
 import CountriesItem from "@/components/countries/CountriesItem";
 import Title from "@/components/more/Title";
-import Link from "next/link";
 import { GoogleMapsIcon, NotBordersIcon, SavedAddedIcon, SavedAddIcon } from "@/helper/Icon";
-import numberFormatter from 'number-formatter'
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from 'react-redux'
-import { useRouter } from "next/router";
-import { changeLoader } from "@/redux/features/settingsSlice";
+import { closeLoader, openLoader } from "stores/settings";
 import Loader from "@/components/Loader";
+import { addSaved, removeSaved } from "stores/countries"
 
 export default function CountriesDetail() {
 
     const router = useRouter()
     const { slug } = router.query
 
+    const { savedList } = useSelector((state) => state.countries)
     const { loader } = useSelector((state) => state.settings)
     const dispatch = useDispatch()
 
     const [data, setData] = useState(false)
     const [borders, setBorders] = useState(false)
+    const [saved, setSaved] = useState(false)
 
     useEffect(() => {
         const filter = async () => {
             // Loader aç
-            dispatch(changeLoader(true))
+            dispatch(openLoader())
 
             if (slug) {
+                // URL'den ülke kodunu kes
                 const slugSplit = await slug.split('-')
                 const code = await slugSplit[slugSplit.length - 1].toUpperCase()
-
+                // ülke detayları ve sınır ülkelerini getir
                 const data = await getCountries(`alpha/${code}`)
                 const borders = await getCountries(`alpha?codes=${data.borders.length > 0 ? data.borders + ',' : data.borders}`)
-
+                // ülke detayları ve sınır ülkelerini state de yaz
                 setData(data)
                 setBorders(borders)
+                // ülke kaydedilenler listesinde var mı
+                const savedCheck = await savedList.filter(item => item.cca2 === code)
+                setSaved(savedCheck.length > 0)
+                // Loader kapat
+                dispatch(closeLoader())
 
-                // Loader aç
-                dispatch(changeLoader(false))
+                // Başlangıç ekleme butonu kontrolü
+                // localstorage listesini al
+                const a = JSON.parse(localStorage.getItem('saved'))
+                // URL ülke kodunu düzenle
+                const sluga = code.toLowerCase();
+                // kaydedilenler listesinde var mı
+                const check = a.find(item => item === sluga)
 
+                if (!check) { setSaved(false) } else { setSaved(true) }
             }
         }
         filter()
     }, [slug])
 
+    const toogleSaved = (code) => {
+        // localstorage listesini al
+        const a = JSON.parse(localStorage.getItem('saved'))
+        // URL ülke kodunu düzenle
+        const slug = code.toLowerCase();
+        // kaydedilenler listesinde var mı
+        const check = a.find(item => item === slug)
 
-    const [saved, setSaved] = useState(false)
+        if (!check) {
+            // listede yoksa ekle
+            a.push(slug)
+            setSaved(true)
+            dispatch(addSaved(a))
+        } else {
+            // listede varsa sil
+            a = a.filter(item => item !== slug)
+            setSaved(false)
+            dispatch(removeSaved(a))
+        }
+        // yeni listeyi localstorage yaz
+        localStorage.setItem('saved', JSON.stringify(a))
+    }
 
     const NotBorders = () => {
         return (
@@ -82,9 +117,9 @@ export default function CountriesDetail() {
                                 <Image
                                     src={data.flags.svg}
                                     alt={data.name.common}
-                                    layout={"responsive"}
-                                    width={300}
-                                    height={200}
+                                    width={512}
+                                    height={256}
+                                    objectFit={'contain'}
                                     priority
                                 />
                             </div>
@@ -108,13 +143,11 @@ export default function CountriesDetail() {
                                             </a>
                                         </Link>
                                     }
-                                    <button>
+                                    <button onClick={() => toogleSaved(data.cca2)}>
                                         {saved ? <SavedAddedIcon /> : <SavedAddIcon />}
                                         <p>{saved ? 'Remove' : 'Add'}</p>
                                     </button>
-
                                 </div>
-
                             </div>
 
                         </div>

@@ -35,17 +35,11 @@ const initialState = {
     ]
 }
 
-export const headerSlice = createSlice({
+export const header = createSlice({
     name: 'header',
     initialState,
     reducers: {
-        // getRandom: (state, action) => {
-        //     const random = Math.floor(Math.random() * action.payload)
-        //     state.random = random
-        // }
     }
 })
 
-// export const { getRandom } = headerSlice.actions
-
-export default headerSlice.reducer
+export default header.reducer

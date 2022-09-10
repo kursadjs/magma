@@ -13,9 +13,9 @@ const CountriesItem = ({ data }) => {
                         <Image
                             src={data.flags.svg}
                             alt={data.name.common}
-                            width={300}
-                            height={200}
-                            objectFit={'cover'}
+                            width={512}
+                            height={341}
+                            objectFit={'contain'}
                         />
                     </div>
 
