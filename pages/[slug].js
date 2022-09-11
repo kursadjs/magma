@@ -118,7 +118,7 @@ export default function CountriesDetail() {
                                     src={data.flags.svg}
                                     alt={data.name.common}
                                     width={512}
-                                    height={256}
+                                    height={341}
                                     objectFit={'contain'}
                                     priority
                                 />

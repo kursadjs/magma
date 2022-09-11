@@ -3,12 +3,16 @@
   height: auto;
   display: flex;
   flex-direction: column;
+  padding-top: var(--w-8);
+  padding-bottom: var(--w-8);
   gap: var(--w-12);
 
   .header {
     width: 100%;
     height: auto;
     display: flex;
+    padding-left: var(--w-8);
+    padding-right: var(--w-8);
     gap: var(--w-8);
 
     .flag {
@@ -106,6 +110,8 @@
     height: auto;
     display: flex;
     flex-direction: column;
+    padding-left: var(--w-8);
+    padding-right: var(--w-8);
     gap: var(--w-4);
 
     .table {

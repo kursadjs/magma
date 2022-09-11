@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   flex: 1;
+  padding: var(--w-8);
   gap: var(--w-4);
   scroll-margin-top: var(--w-24);
 }
@@ -94,8 +95,7 @@
   gap: var(--w-2);
   background-color: rgba(var(--bg-1), 0.86);
   backdrop-filter: blur(var(--w-8));
-  padding-top: var(--w-4);
-  padding-bottom: var(--w-4);
+  padding: var(--w-4) var(--w-8);
   overflow-y: auto;
 
   li {
