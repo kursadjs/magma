@@ -1,3 +1,5 @@
+@import "/styles/mixins";
+
 .countriesBox {
   width: 100%;
   height: auto;
@@ -7,6 +9,19 @@
   padding: var(--w-8);
   gap: var(--w-4);
   scroll-margin-top: var(--w-24);
+
+  @include media(lg) {
+    padding-top: var(--w-4);
+    padding-bottom: var(--w-4);
+  }
+  @include media(md) {
+    padding-left: var(--w-4);
+    padding-right: var(--w-4);
+  }
+
+  @include media(sm) {
+    scroll-margin-top: var(--w-20);
+  }
 }
 
 .countriesFlow {
@@ -15,6 +30,11 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(var(--w-64), 1fr));
   gap: var(--w-8);
+
+  @include media(xl) {
+    grid-template-columns: repeat(auto-fill, minmax(var(--w-48), 1fr));
+    gap: var(--w-4);
+  }
 }
 
 .item {
@@ -35,6 +55,16 @@
     border-radius: var(--w-2);
     transition: var(--ani-1);
 
+    @include media(lg) {
+      padding: var(--w-2);
+      gap: var(--w-2);
+    }
+    @include media(sm) {
+      flex-direction: row;
+      padding: 0;
+      gap: 0;
+    }
+
     &:hover {
       background-color: rgb(var(--bg-3));
     }
@@ -45,6 +75,12 @@
       display: flex;
       border-radius: var(--w-1);
       overflow: hidden;
+      flex-shrink: 0;
+      background-color: rgb(var(--bg-3));
+
+      @include media(sm) {
+        width: var(--w-36);
+      }
     }
 
     .info {
@@ -52,12 +88,24 @@
       height: auto;
       display: flex;
       flex-direction: column;
+      flex: 1;
+      overflow: hidden;
+
+      @include media(xl) {
+        gap: var(--w-0_5);
+      }
+      @include media(sm) {
+        padding: var(--w-2) var(--w-4);
+      }
 
       h4,
       p {
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+        @include media(sm) {
+          white-space: inherit;
+        }
       }
 
       h4 {
@@ -65,12 +113,20 @@
         font-size: var(--fs-base);
         color: rgb(var(--tx-1));
         font-weight: 600;
+
+        @include media(xl) {
+          font-size: var(--fs-sm);
+        }
       }
       p {
         line-height: 1.5em;
         font-size: var(--fs-sm);
         color: rgb(var(--tx-3));
         font-weight: 500;
+
+        @include media(xl) {
+          font-size: var(--fs-xs);
+        }
 
         span {
           &::after {
@@ -96,7 +152,13 @@
   background-color: rgba(var(--bg-1), 0.86);
   backdrop-filter: blur(var(--w-8));
   padding: var(--w-4) var(--w-8);
+  margin-top: var(--w-8);
   overflow-y: auto;
+
+  @include media(xl) {
+    padding: var(--w-4);
+    margin-top: 0;
+  }
 
   li {
     width: auto;
@@ -105,6 +167,10 @@
     line-height: 1.5em;
     font-size: var(--fs-sm);
     font-weight: 500;
+
+    @include media(sm) {
+      font-size: var(--fs-xs);
+    }
 
     a {
       width: auto;

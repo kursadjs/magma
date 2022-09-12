@@ -1,6 +1,7 @@
+@import "./mixins";
+
 .searchBox {
   position: sticky;
-  padding: var(--w-8);
   top: 0;
   width: 100%;
   height: auto;
@@ -9,6 +10,13 @@
   z-index: 9;
   background-color: rgba(var(--bg-1), 0.86);
   backdrop-filter: blur(var(--w-8));
+  padding: var(--w-4) var(--w-8);
+  margin-top: var(--w-4);
+
+  @include media(md) {
+    padding: var(--w-4);
+    margin-top: 0;
+  }
 
   form {
     position: relative;
@@ -35,6 +43,18 @@
       padding-right: calc(var(--w-8) + var(--w-1) + (var(--w-3) * 2));
       transition: var(--ani-1);
 
+      @include media(xl) {
+        height: var(--w-12);
+        font-size: var(--fs-sm);
+      }
+
+      @include media(lg) {
+        max-width: 60%;
+      }
+      @include media(md) {
+        max-width: 100%;
+      }
+
       &::placeholder {
         font-size: var(--fs-sm);
         font-weight: 600;
@@ -44,6 +64,10 @@
       &:focus {
         max-width: calc(var(--w-4) * 32);
         background-color: rgb(var(--bg-3));
+
+        @include media(lg) {
+          max-width: 100%;
+        }
       }
     }
 

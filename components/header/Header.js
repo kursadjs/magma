@@ -4,6 +4,7 @@ import styles from './Header.module.scss'
 import { useSelector } from 'react-redux'
 import RandomButton from './RandomButton'
 import Button from './Button'
+import Footer from './Footer'
 
 const Header = () => {
 
@@ -22,10 +23,7 @@ const Header = () => {
                 <RandomButton />
             </div>
 
-            <div className={styles.more}>
-                <p>© 2022 KursadJS</p>
-                <p>Created by <Link href="https://kursadsimsek.com/"><a>@KursadJS</a></Link> with NextJS.</p>
-            </div>
+            <Footer />
         </div>
     )
 }

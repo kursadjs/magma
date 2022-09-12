@@ -9,6 +9,7 @@ import { closeLoader, openLoader } from "stores/settings"
 
 import Loader from "./Loader"
 import Header from "./header/Header"
+import Navbar from "./header/Navbar"
 
 const Layout = ({ children }) => {
 
@@ -54,10 +55,15 @@ const Layout = ({ children }) => {
             <Head>
                 <title>{loader && 'Loading...'}</title>
             </Head>
+
+
             <Header />
             <div className='main'>
                 {loader ? <Loader /> : children}
             </div>
+            <Navbar />
+
+
         </div>
     )
 }

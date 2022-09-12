@@ -1,3 +1,4 @@
+import { RandomIcon } from '@/helper/Icon'
 import { getCountries } from '@/lib/restcountries'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -25,8 +26,9 @@ const RandomButton = () => {
     }
 
     return (
-        <button className={styles.itemRandom} onClick={() => router.push(getRandomCountry())}>
-            {'Random Country'}
+        <button className={styles.itemRandom} disabled={!slugData.length > 0} onClick={() => slugData.length > 0 && router.push(getRandomCountry())}>
+            <RandomIcon />
+            <p>Random Country</p>
         </button>
     )
 }

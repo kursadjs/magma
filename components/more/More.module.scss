@@ -1,3 +1,5 @@
+@import "/styles/mixins";
+
 .pageTitle {
   width: 100%;
   height: auto;
@@ -12,6 +14,13 @@
     align-items: center;
     gap: var(--w-4);
 
+    @include media(lg) {
+      font-size: var(--fs-xl);
+    }
+    @include media(sm) {
+      font-size: var(--fs-base);
+    }
+
     span {
       font-size: var(--fs-sm);
       font-weight: 600;
@@ -19,6 +28,11 @@
       border-radius: var(--w-2);
       padding-left: var(--w-3);
       padding-right: var(--w-3);
+
+      @include media(sm) {
+        font-size: var(--fs-xs);
+        font-weight: 500;
+      }
     }
   }
 }
